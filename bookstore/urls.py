@@ -1,9 +1,12 @@
 from django.urls import path, include
-from rest_framework import routers
 
-router = routers.DefaultRouter()
+from .routers import router
+from .views import AuthorList, AuthorDetail
+
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('author/', AuthorList.as_view()),
+    path('author/<int:pk>/', AuthorDetail.as_view())
 ]
